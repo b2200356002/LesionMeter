@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Images</title>
+    <style>
+        #drop_zone {
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+            border: 3px dashed #0087F7;
+            margin: 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+        }
+
+        #file_list {
+            margin: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Image Upload for 3D Reconstruction</h2>
+    <form action="/upload-images" method="post" enctype="multipart/form-data">
+        <div id="drop_zone">Drag and drop files here or click to select files</div>
+        <input type="file" id="file_input" name="files[]" multiple hidden>
+        <div id="file_list"></div>
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        let dropZone = document.getElementById('drop_zone');
+        let fileInput = document.getElementById('file_input');
+        let fileList = document.getElementById('file_list');
+
+        let filesArray = [];
+
+        dropZone.onclick = function () {
+            fileInput.click();
+        };
+
+        dropZone.ondragover = function (event) {
+            event.preventDefault();
+        };
+
+        dropZone.ondrop = function (event) {
+            event.preventDefault();
+            filesArray.push(...event.dataTransfer.files);
+            updateFileList();
+        };
+
+        fileInput.onchange = function () {
+            filesArray.push(...fileInput.files);
+            updateFileList();
+        };
+
+        function updateFileList() {
+            fileList.innerHTML = '';
+            for (let i = 0; i < filesArray.length; i++) {
+                let file = filesArray[i];
+                let listItem = document.createElement('div');
+                listItem.textContent = file.name;
+                fileList.appendChild(listItem);
+            }
+
+            // Update the file input files property to include all files
+            let dataTransfer = new DataTransfer();
+            filesArray.forEach(file => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+        }
+    </script>
+</body>
+
+</html>

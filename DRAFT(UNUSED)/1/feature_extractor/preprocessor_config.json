@@ -1,0 +1,17 @@
+{
+  "_valid_processor_keys": [
+    "images",
+    "do_resize",
+    "size_divisor",
+    "resample",
+    "do_rescale",
+    "return_tensors",
+    "data_format",
+    "input_data_format"
+  ],
+  "do_rescale": true,
+  "do_resize": true,
+  "image_processor_type": "GLPNImageProcessor",
+  "resample": 2,
+  "size_divisor": 32
+}
