@@ -18,7 +18,7 @@
 
 ## About the Project
 
-LesionMeter is my finishing project for the course BBM479/BBM480. It aims to enhance the accuracy and efficiency of skin lesion measurements in clinical settings. The project leverages advanced 3D reconstruction techniques and segmentation models to provide reliable measurements from mobile phone images.
+LesionMeter is a finishing project for the course BBM479/BBM480. It aims to enhance the accuracy and efficiency of skin lesion measurements in clinical settings. The project leverages advanced 3D reconstruction techniques and segmentation models to provide reliable measurements from mobile phone images.
 
 **Future Work**:
 - Enhancing 3D model accuracy and computational efficiency.
