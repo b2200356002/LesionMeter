@@ -14,16 +14,15 @@ class _LesionNotifier extends AutoDisposeNotifier<LesionState> {
 
     final result = await ref.read(skinRepositoryProvider).scan(imageFiles: imageFiles);
 
-    state = state.copyWith(
-      isLoading: false,
-      lesion: some(result),
-    );
+    state = state.copyWith(lesion: some(result));
   }
 
   Future<void> pickImagesFromGallery() async {
+    state = state.copyWith(isLoading: true);
+
     final imageFiles = await ref.read(multimediaProvider).pickMultiImage();
 
-    if (imageFiles.isNotEmpty) scan(imageFiles);
+    state = state.copyWith(isLoading: false, imageFiles: imageFiles);
   }
 }
 

@@ -25,6 +25,7 @@ class LoadingScreen {
   LoadingScreenController? controller;
 
   void show({required BuildContext context, String? message}) {
+    hide();
     controller = _showOverlay(context: context, message: message)..update();
   }
 

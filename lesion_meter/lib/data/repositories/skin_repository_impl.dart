@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lesion_meter/constants/api_endpoints.dart';
+import 'package:lesion_meter/constants/failure_messages.dart';
 import 'package:lesion_meter/data/DTOs/lesion_dto.dart';
 import 'package:lesion_meter/domain/models/patient.dart';
 import 'package:lesion_meter/domain/models/record.dart';
@@ -27,6 +28,8 @@ final class SkinRepositoryImpl implements SkinRepository {
 
   @override
   Future<Either<Failure, Lesion>> scan({required List<XFile> imageFiles}) async {
+    return left(const Failure.unknownError(unknownErrorMessage));
+
     final image = await decodeImageFromList(await imageFiles.first.readAsBytes());
     final resolution = Size(image.width.toDouble(), image.height.toDouble());
 
@@ -48,9 +51,9 @@ final class SkinRepositoryImpl implements SkinRepository {
 
     final result = await networkService.post(Endpoints.skinLession, data: data);
 
-    //return right(const LesionDto(surfaceArea: 0.9324321).toDomain());
+    return right(const LesionDto(surfaceArea: 0.9324321).toDomain());
 
-    return result.map((e) => LesionDto.fromJson(e.data!).toDomain());
+    //return result.map((e) => LesionDto.fromJson(e.data!).toDomain());
   }
 
   @override

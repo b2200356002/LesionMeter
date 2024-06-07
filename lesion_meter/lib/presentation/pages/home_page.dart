@@ -100,8 +100,10 @@ class _Welcome extends ConsumerWidget {
               Text("Scan and measure lesions", style: textTheme.labelMedium),
               SizedBox(height: 12.h),
               Text(
-                "Ut enim ad minim veniam, quis nostrud exercitati ullamco "
-                "laboris nisi ut aliquip ex ea commodo consequat.",
+                "Lesion Meter is a cutting-edge mobile application that revolutionizes "
+                "skin health by providing accurate, efficient, and easy-to-use lesion measurement. "
+                "With our advanced algorithms and user-friendly interface, you can accurately measure "
+                "the area and volume of skin lesions in just a few simple steps.",
                 style: textTheme.bodyMedium?.copyWith(color: colors.textColor),
               ),
               SizedBox(height: 12.h),

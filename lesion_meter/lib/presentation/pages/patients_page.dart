@@ -55,8 +55,6 @@ class _Search extends ConsumerWidget {
             textInputAction: TextInputAction.search,
           ),
         ),
-        SizedBox(width: 12.w),
-        Assets.icons.filter.svg(width: 24.r, height: 24.r),
       ],
     );
   }

@@ -192,7 +192,7 @@ class _Records extends ConsumerWidget {
           final record = value.elementAt(index);
 
           return ListTile(
-            onTap: () => context.pushRoute(RecordDetailsRoute(record: record)),
+            onTap: () => context.pushRoute(RecordDetailsRoute(record: record, patient: ref.watch(_patientProvider))),
             shape: Border(bottom: BorderSide(color: colors.bodyTextcolor.withOpacity(0.1))),
             contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
             title: Text("Date: ${record.date.ddMMyyyy}"),

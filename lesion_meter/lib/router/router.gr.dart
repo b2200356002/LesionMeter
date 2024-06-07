@@ -60,7 +60,11 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<RecordDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: RecordDetailsPage(record: args.record)),
+        child: WrappedRoute(
+            child: RecordDetailsPage(
+          record: args.record,
+          patient: args.patient,
+        )),
       );
     },
     RecordRoute.name: (routeData) {
@@ -206,10 +210,14 @@ class PatientsRoute extends PageRouteInfo<void> {
 class RecordDetailsRoute extends PageRouteInfo<RecordDetailsRouteArgs> {
   RecordDetailsRoute({
     required Record record,
+    required Patient patient,
     List<PageRouteInfo>? children,
   }) : super(
           RecordDetailsRoute.name,
-          args: RecordDetailsRouteArgs(record: record),
+          args: RecordDetailsRouteArgs(
+            record: record,
+            patient: patient,
+          ),
           initialChildren: children,
         );
 
@@ -220,13 +228,18 @@ class RecordDetailsRoute extends PageRouteInfo<RecordDetailsRouteArgs> {
 }
 
 class RecordDetailsRouteArgs {
-  const RecordDetailsRouteArgs({required this.record});
+  const RecordDetailsRouteArgs({
+    required this.record,
+    required this.patient,
+  });
 
   final Record record;
 
+  final Patient patient;
+
   @override
   String toString() {
-    return 'RecordDetailsRouteArgs{record: $record}';
+    return 'RecordDetailsRouteArgs{record: $record, patient: $patient}';
   }
 }
 

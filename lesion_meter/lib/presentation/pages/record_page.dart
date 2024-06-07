@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lesion_meter/common/loading_overlay.dart';
+import 'package:lesion_meter/presentation/pages/camera_page.dart';
 import 'package:lesion_meter/presentation/providers/lesion_provider.dart';
 import 'package:lesion_meter/presentation/widgets/patients_bottom_sheet.dart';
 import 'package:lesion_meter/router/router.dart';
@@ -14,21 +16,24 @@ class RecordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('Create Record')),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const _Images(),
-            SizedBox(height: 24.h),
-            const _Lesion(),
-            const Spacer(),
-            const _Buttons(),
-            SizedBox(height: 20.h),
-          ],
+    return PopScope(
+      onPopInvoked: (didPop) => LoadingScreen().hide(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(title: const Text('Create Record')),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _Images(),
+              SizedBox(height: 24.h),
+              const _Lesion(),
+              const Spacer(),
+              const _Buttons(),
+              SizedBox(height: 20.h),
+            ],
+          ),
         ),
       ),
     );
@@ -122,8 +127,7 @@ class _Lesion extends ConsumerWidget {
             Text(r.area.toString(), style: textTheme.bodySmall),
             SizedBox(height: 16.h),
             Text("Releated Area:", style: textTheme.labelMedium),
-            //TODO add related area for gallery option
-            Text("Kol", style: textTheme.bodySmall),
+            Text(ref.watch(relatedAreaProvider), style: textTheme.bodySmall),
           ],
         ),
       ),

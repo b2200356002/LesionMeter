@@ -49,7 +49,7 @@ class _CameraPageState extends ConsumerState<CameraPage> with TickerProviderStat
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
     _controller = CameraController(
-      _cameras[1],
+      _cameras[0],
       ResolutionPreset.ultraHigh,
       enableAudio: false,
     );
@@ -296,7 +296,7 @@ class _Area extends ConsumerWidget {
           child: Column(
             children: [
               CustomTextField(
-                hintText: "Lesion area",
+                hintText: "Related area",
                 onChanged: (value) => notifier.state = value,
                 onFieldSubmitted: (value) => notifier.state = value,
                 textInputAction: TextInputAction.done,

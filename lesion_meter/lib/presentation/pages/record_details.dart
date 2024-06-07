@@ -8,21 +8,30 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lesion_meter/domain/models/record.dart';
 
 import '../../constants/colors.dart' as colors;
+import '../../domain/models/patient.dart';
 import '../../gen/assets.gen.dart';
 import '../../router/router.dart';
 
 final _recordProvider = Provider.autoDispose<Record>((ref) => throw UnimplementedError());
+final _patientProvider = Provider.autoDispose<Patient>((ref) => throw UnimplementedError());
 
 @RoutePage()
 class RecordDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   final Record record;
+  final Patient patient;
 
-  const RecordDetailsPage({required this.record});
+  const RecordDetailsPage({
+    required this.record,
+    required this.patient,
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return ProviderScope(
-      overrides: [_recordProvider.overrideWithValue(record)],
+      overrides: [
+        _recordProvider.overrideWithValue(record),
+        _patientProvider.overrideWithValue(patient),
+      ],
       child: this,
     );
   }
@@ -145,11 +154,13 @@ class _TriDViewHeader extends StatelessWidget {
   }
 }
 
-class _TriDView extends StatelessWidget {
+class _TriDView extends ConsumerWidget {
   const _TriDView();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final patient = ref.watch(_patientProvider);
+
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       sliver: SliverToBoxAdapter(
@@ -157,7 +168,7 @@ class _TriDView extends StatelessWidget {
           height: 300.h,
           child: Flutter3DViewer(
             progressBarColor: colors.green,
-            src: Assets.anims.model,
+            src: patient.name == "Berke" ? Assets.anims.model : Assets.anims.model2,
           ),
         ),
       ),

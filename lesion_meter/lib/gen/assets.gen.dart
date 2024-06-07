@@ -17,8 +17,11 @@ class $AssetsAnimsGen {
   /// File path: assets/anims/model.glb
   String get model => 'assets/anims/model.glb';
 
+  /// File path: assets/anims/model2.glb
+  String get model2 => 'assets/anims/model2.glb';
+
   /// List of all assets
-  List<String> get values => [model];
+  List<String> get values => [model, model2];
 }
 
 class $AssetsFontsGen {
