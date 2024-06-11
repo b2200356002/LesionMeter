@@ -35,7 +35,7 @@ To set up and run the backend, ensure you have the following installed:
 
 - Python 3.8 or later
 - Necessary Python libraries (see `requirements.txt`)
-- GPU support for deep learning models (optional but recommended)
+- GPU support for deep learning models, segmentation models, image processing tasks (optional but recommended)
 
 ### Installation
 
