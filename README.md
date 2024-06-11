@@ -18,8 +18,31 @@
 
 ## About the Project
 
-LesionMeter is a finishing project for the course BBM479/BBM480. It aims to enhance the accuracy and efficiency of skin lesion measurements in clinical settings. The project leverages advanced 3D reconstruction techniques and segmentation models to provide reliable measurements from mobile phone images.
+**LesionMeter** is a finishing project for the course BBM479/BBM480. It aims to enhance the accuracy and efficiency of skin lesion measurements in clinical settings. The project leverages advanced 3D reconstruction techniques and segmentation models to provide reliable measurements from mobile phone images.
 
-**Future Work**:
+### Future Work:
+
 - Enhancing 3D model accuracy and computational efficiency.
 - Expanding and diversifying datasets for improved model training.
+
+## Backend
+
+The backend of LesionMeter is responsible for handling the image processing, segmentation, and area calculation tasks. It is designed to be run on a server or a local machine, utilizing various libraries and tools to process the images captured by the mobile application.
+
+### Requirements
+
+To set up and run the backend, ensure you have the following installed:
+
+- Python 3.8 or later
+- Necessary Python libraries (see `requirements.txt`)
+- GPU support for deep learning models (optional but recommended)
+
+### Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/LesionMeter.git
+   cd LesionMeter´´´
+
+   
